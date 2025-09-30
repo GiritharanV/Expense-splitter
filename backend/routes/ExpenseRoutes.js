@@ -1,16 +1,9 @@
-import { Router } from "express";
+import { Router } from 'express';
+import { addExpense, getGroupExpenses } from '../controllers/ExpenseController.js';
+
 const router = Router();
 
-const addExpense = (req, res) => {
-try {
-    // Logic to add a new expense
-} catch (error) {
-    
-}}
-
-
-
-
-
+router.post('/', addExpense);
+router.get('/:group_id', getGroupExpenses);
 
 export default router;

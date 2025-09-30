@@ -1,17 +1,24 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import router from './routes/UserRoute.js';
+
+// Route imports
+import userRoutes from './routes/UserRoute.js';
+import expenseRoutes from './routes/expenses.js';
+import splitRoutes from './routes/splits.js';
+import transactionRoutes from './routes/transactions.js';
+
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT || 5000;
 
-app.use(express.json()); 
-app.get('/', (req, res) => {
-  res.send('Welcome to the Expense Splitter API');
-});
-app.use('/api/users', router);
+app.use(express.json());
+
+app.use('/api/users', userRoutes);
+app.use('/api/expenses', expenseRoutes);
+app.use('/api/splits', splitRoutes);
+app.use('/api/transactions', transactionRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
