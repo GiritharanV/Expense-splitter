@@ -1,24 +1,27 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-// Route imports
 import userRoutes from './routes/UserRoute.js';
-import expenseRoutes from './routes/expenses.js';
-import splitRoutes from './routes/splits.js';
-import transactionRoutes from './routes/transactions.js';
+import expenseRoutes from './routes/ExpenseRoutes.js';
+import splitRoutes from './routes/SplitRoutes.js';
+import groupRoutes from './routes/GroupRoutes.js';
+import groupMembersRoutes from './routes/GroupmembersRoutes.js';
+import expenseSplitsRoutes from './routes/SplitRoutes.js';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 app.use(express.json());
-
+app.use('/api/groups', groupRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/splits', splitRoutes);
-app.use('/api/transactions', transactionRoutes);
+app.use('/api/group-members', groupMembersRoutes);
+app.use("/api/expense-splits", expenseSplitsRoutes);
+
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(` Server is running on port ${PORT}`);
 });

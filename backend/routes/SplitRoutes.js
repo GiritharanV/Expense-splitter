@@ -1,9 +1,8 @@
-import { Router } from 'express';
-import { updateSplit, deleteSplit } from '../controllers/splitController.js';
+import express from "express";
+import {  getExpensesplits } from "../controllers/SplitController.js";
 
-const router = Router();
+const router = express.Router();
 
-router.put('/:split_id', updateSplit);
-router.delete('/:split_id', deleteSplit);
+router.get("/:expense_id", getExpensesplits);
 
 export default router;
